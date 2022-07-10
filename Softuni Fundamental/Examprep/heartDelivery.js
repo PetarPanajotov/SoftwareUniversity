@@ -6,8 +6,6 @@ function heartDelivery(arr) {
     let index = 0;
     let token = copyofArr[index]
     let currentPosition = 0;
-    let boolean = false;
-    let houseBoolean = false
     while(token !== "Love!") {
         token = token.split(" ")
         let command = Number(token[1]);
