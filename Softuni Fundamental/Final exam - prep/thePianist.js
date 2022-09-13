@@ -38,7 +38,7 @@ function thePianist(input) {
                     pianoObj[piece] = [];
                     pianoObj[piece].push(checkpoint)
                     pianoObj[piece].push(firstManipulation)
-                    console.log(`Changed the key of ${piece} to ${firstManipulation}`)
+                    console.log(`Changed the key of ${piece} to ${firstManipulation}!`)
                 } else {
                     console.log(`Invalid operation! ${piece} does not exist in the collection.`)
                 }
