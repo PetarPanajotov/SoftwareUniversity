@@ -48,8 +48,8 @@ function magicMatricesv2(matrix) {
     }
     return true;
 }
-console.log(magicMatricesv2(([[4, 5, 6],
+console.log(magicMatricesv2([[4, 5, 6],
 
 [6, 5, 4],
 
-[5, 5, 5]])))
+[5, 5, 5]]))
