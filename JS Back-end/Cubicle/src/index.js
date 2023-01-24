@@ -9,6 +9,7 @@ const app = express();
 setupView(app)
 
 app.use(express.static('src/public'));
+app.use(express.urlencoded({extended: false}))
 app.use(routes);
 
 app.listen(config.port, console.log(`Server listening on port ${config.port}`));
