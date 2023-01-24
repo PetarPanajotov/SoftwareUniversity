@@ -6,3 +6,8 @@ exports.getHomePage = (req,res) => {
 exports.getAboutPage = (req,res) => {
     res.render('about')
 }
+exports.getDetails = (req,res) => {
+    const cubeId = Number(req.params.id)
+    let cube = db.cubes.find(x => x.id === cubeId);
+    res.render('details', {cube})
+}
