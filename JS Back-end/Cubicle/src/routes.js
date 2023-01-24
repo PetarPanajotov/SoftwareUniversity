@@ -5,12 +5,11 @@ const homeController = require('./controllers/homeController');
 const Router = express.Router;
 const router = Router();
 
-router.get('/', homeController.getHomePage)
+router.get('/', homeController.getHomePage);
 
-router.get('/about', (req, res) => {
-    res.render('about');
-});
+router.get('/about', homeController.getAboutPage);
 
 router.get('/create', cubeController.getCreateCube);
 router.post('/create', cubeController.postCreateCube);
+
 module.exports = router;
