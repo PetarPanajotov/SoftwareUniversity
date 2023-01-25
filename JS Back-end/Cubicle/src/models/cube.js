@@ -3,7 +3,7 @@ const db = require('../config/database.json');
 const path = require('path');
 
 class Cube {
-    constructor(name, description, imageUrl, difficultyLevel) {
+    constructor(name, description, imgUrl, difficultyLevel) {
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
