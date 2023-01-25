@@ -9,5 +9,9 @@ exports.getAboutPage = (req,res) => {
 exports.getDetails = (req,res) => {
     const cubeId = Number(req.params.id)
     let cube = db.cubes.find(x => x.id === cubeId);
+    if (!cube) {
+        res.render('404');
+        return;
+    }
     res.render('details', {cube})
 }
