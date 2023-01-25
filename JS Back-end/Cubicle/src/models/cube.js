@@ -6,7 +6,7 @@ class Cube {
     constructor(name, description, imageUrl, difficultyLevel) {
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.imgUrl = imgUrl;
         this.difficultyLevel = difficultyLevel;
     }
 
