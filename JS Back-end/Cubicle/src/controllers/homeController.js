@@ -12,7 +12,7 @@ exports.getHomePage = (req,res) => {
     if (to) {
         copyDb = copyDb.filter(x => Number(x.difficultyLevel) <= Number(to));
     }
-    res.render('index', { cubes: copyDb })
+    res.render('index', { cubes: copyDb, search, from, to })
 }
 exports.getAboutPage = (req,res) => {
     res.render('about')
