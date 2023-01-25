@@ -1,7 +1,18 @@
 const db = require('../config/database.json');
 
 exports.getHomePage = (req,res) => {
-    res.render('index', { cubes: db.cubes })
+    const {search, from, to} = req.query;
+    let copyDb = db.cubes;
+    if (search) {
+        copyDb = copyDb.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+    }
+    if (from) {
+        copyDb = copyDb.filter(x => Number(x.difficultyLevel) >= Number(from));
+    }
+    if (to) {
+        copyDb = copyDb.filter(x => Number(x.difficultyLevel) <= Number(to));
+    }
+    res.render('index', { cubes: copyDb })
 }
 exports.getAboutPage = (req,res) => {
     res.render('about')
