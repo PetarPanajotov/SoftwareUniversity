@@ -1,5 +1,3 @@
-const env = process.env.NODE_ENV || 'development';
-
 const express = require('express');
 const config = require('./config/config');
 const setupView = require('./config/viewEngine');
