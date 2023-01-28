@@ -1,28 +1,28 @@
-const db = require('../config/database.json');
+const Cube = require('../models/Cube');
 
-exports.getHomePage = (req,res) => {
+exports.getHomePage = async (req,res) => {
     const {search, from, to} = req.query;
-    let copyDb = db.cubes;
+    let cubes = await Cube.find().lean();
     if (search) {
-        copyDb = copyDb.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
-    }
+        cubes = copyDb.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+    };
     if (from) {
-        copyDb = copyDb.filter(x => Number(x.difficultyLevel) >= Number(from));
-    }
+        cubes = copyDb.filter(x => Number(x.difficultyLevel) >= Number(from));
+    };
     if (to) {
-        copyDb = copyDb.filter(x => Number(x.difficultyLevel) <= Number(to));
-    }
-    res.render('index', { cubes: copyDb, search, from, to })
-}
+        cubes = copyDb.filter(x => Number(x.difficultyLevel) <= Number(to));
+    };
+    res.render('index', { cubes: cubes, search, from, to });
+};
 exports.getAboutPage = (req,res) => {
-    res.render('about')
+    res.render('about');
 }
 exports.getDetails = (req,res) => {
-    const cubeId = Number(req.params.id)
+    const cubeId = Number(req.params.id);
     let cube = db.cubes.find(x => x.id === cubeId);
     if (!cube) {
         res.render('404');
         return;
     }
-    res.render('details', {cube})
+    res.render('details', {cube});
 }
