@@ -17,12 +17,12 @@ exports.getHomePage = async (req,res) => {
 exports.getAboutPage = (req,res) => {
     res.render('about');
 }
-exports.getDetails = (req,res) => {
-    const cubeId = Number(req.params.id);
-    let cube = db.cubes.find(x => x.id === cubeId);
+exports.getDetails = async (req,res) => {
+    const cubeId = req.params.id;
+    let cube = await Cube.findById(cubeId);
     if (!cube) {
         res.render('404');
         return;
     }
-    res.render('details', {cube});
+    res.render('details', cube);
 }
