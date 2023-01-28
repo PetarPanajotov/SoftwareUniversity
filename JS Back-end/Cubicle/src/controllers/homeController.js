@@ -4,13 +4,13 @@ exports.getHomePage = async (req,res) => {
     const {search, from, to} = req.query;
     let cubes = await Cube.find().lean();
     if (search) {
-        cubes = copyDb.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+        cubes = cubes.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
     };
     if (from) {
-        cubes = copyDb.filter(x => Number(x.difficultyLevel) >= Number(from));
+        cubes = cubes.filter(x => Number(x.difficultyLevel) >= Number(from));
     };
     if (to) {
-        cubes = copyDb.filter(x => Number(x.difficultyLevel) <= Number(to));
+        cubes = cubes.filter(x => Number(x.difficultyLevel) <= Number(to));
     };
     res.render('index', { cubes: cubes, search, from, to });
 };
