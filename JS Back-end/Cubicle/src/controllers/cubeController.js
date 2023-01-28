@@ -1,13 +1,15 @@
-const Cube = require("../models/depricated_cube");
+const Cube = require("../models/Cube");
+const mongoose = require('mongoose');
 
 exports.getCreateCube = (req, res) => {
     res.render('create');
 };
-exports.postCreateCube = (req, res) => {
+exports.postCreateCube = async (req, res) => {
     const { name, description, imageUrl, difficultyLevel } = req.body;
 
-    let cube = new Cube(name, description, imageUrl, difficultyLevel);
-    cube.save()
+    let cube = new Cube({name, description, imageUrl, difficultyLevel});
+    console.log(cube);
+    await cube.save();
 
-    res.redirect('/')
+    res.redirect('/');
 }
