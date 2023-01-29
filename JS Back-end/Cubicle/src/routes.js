@@ -17,4 +17,5 @@ router.get('/details/:id', homeController.getDetails);
 
 router.get('/create/accessory', accessoryController.getCreateAccessory);
 router.post('/create/accessory', accessoryController.postCreateAcessory);
+router.get('/attach/accessory/:id', accessoryController.getAttachAccessory);
 module.exports = router;

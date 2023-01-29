@@ -1,4 +1,5 @@
 const Accessory = require('../models/Accessory');
+const Cube = require('../models/Cube');
 const mongoose = require('mongoose');
 
 exports.getCreateAccessory = (req, res) => {
@@ -13,3 +14,10 @@ exports.postCreateAcessory = async (req, res) => {
 
     res.redirect('/')
 };
+exports.getAttachAccessory = async (req, res) => {
+    const cubeId = req.params.id;
+    const cube = await Cube.findById(cubeId).lean();
+    const accessories = await Accessory.find().lean();
+
+    res.render('attachAccessory', {cube, accessories});
+}
