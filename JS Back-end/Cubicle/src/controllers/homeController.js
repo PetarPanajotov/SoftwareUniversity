@@ -19,7 +19,7 @@ exports.getAboutPage = (req,res) => {
 }
 exports.getDetails = async (req,res) => {
     const cubeId = req.params.id;
-    let cube = await Cube.findById(cubeId);
+    let cube = await Cube.findById(cubeId).populate('accessories').lean();
     if (!cube) {
         res.render('404');
         return;

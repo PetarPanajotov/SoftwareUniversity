@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const schema = new mongoose.Schema({
     name: {
         type: String,
@@ -19,7 +18,11 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
 
-    }
+    },
+    accessories: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Accessory'
+    }]
 }
 );
 
