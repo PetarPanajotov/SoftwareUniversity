@@ -2,6 +2,7 @@ const express = require('express');
 const cubeController = require('./controllers/cubeController');
 const homeController = require('./controllers/homeController');
 const accessoryController = require('./controllers/accessoryController');
+const authenticationController = require('./controllers/authenticationController')
 
 const Router = express.Router;
 const router = Router();
@@ -19,4 +20,9 @@ router.get('/create/accessory', accessoryController.getCreateAccessory);
 router.post('/create/accessory', accessoryController.postCreateAcessory);
 router.get('/attach/accessory/:id', accessoryController.getAttachAccessory);
 router.post('/attach/accessory/:id', accessoryController.postAttachAccessory);
+
+router.get('/login', authenticationController.getLogin);
+router.get('/register', authenticationController.getRegister);
+
+
 module.exports = router;
