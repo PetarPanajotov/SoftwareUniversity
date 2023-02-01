@@ -23,6 +23,7 @@ router.post('/attach/accessory/:id', accessoryController.postAttachAccessory);
 
 router.get('/login', authenticationController.getLogin);
 router.get('/register', authenticationController.getRegister);
+router.post('/register', authenticationController.postRegister);
 
 
 module.exports = router;
