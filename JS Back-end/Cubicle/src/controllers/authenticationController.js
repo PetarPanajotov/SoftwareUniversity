@@ -10,7 +10,7 @@ exports.getRegister = (req, res) => {
 exports.postRegister = async (req, res) => {
     const {username, password, repeatPassword} = req.body;
     if (password !== repeatPassword) {
-        return res.redirect('/404');
+        return res.render('404');
     }
     const hash = await bcrypt.hash(password, 10);
     let user = new User({username, password: hash});
