@@ -1,5 +1,4 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const {checkExistingUsername, register, login} = require('../services/authService');
 
 exports.getLogin = (req, res) => {
     res.render('login');
@@ -12,7 +11,14 @@ exports.postRegister = async (req, res) => {
     if (password !== repeatPassword) {
         return res.render('404');
     }
-    const hash = await bcrypt.hash(password, 10);
-    let user = new User({username, password: hash});
-    await user.save();
+    if (await checkExistingUsername(username)) {
+        throw 'User already exist';
+    }
+    await register(username, password);
+    res.redirect('/login');
 };
+exports.postLogin = async (req, res) =>{
+    const {username, password} = req.body;
+    const token = await login(username, password);
+    console.log(token)
+}

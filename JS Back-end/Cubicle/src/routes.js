@@ -22,6 +22,7 @@ router.get('/attach/accessory/:id', accessoryController.getAttachAccessory);
 router.post('/attach/accessory/:id', accessoryController.postAttachAccessory);
 
 router.get('/login', authenticationController.getLogin);
+router.post('/login', authenticationController.postLogin);
 router.get('/register', authenticationController.getRegister);
 router.post('/register', authenticationController.postRegister);
 
