@@ -19,6 +19,12 @@ exports.postRegister = async (req, res) => {
 };
 exports.postLogin = async (req, res) =>{
     const {username, password} = req.body;
+    try {
     const token = await login(username, password);
-    console.log(token)
+    res.cookie('auth', token, {httpOnly: true});
+    res.redirect('/')
+    } catch(err) {
+        console.log(err);
+        res.render('404');
+    }
 }
