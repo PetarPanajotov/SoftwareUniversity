@@ -17,9 +17,8 @@ exports.register = async (username, password) => {
 };
 exports.login = async (username, password) => {
     const user = await this.checkExistingUsername(username).exec();
-    console.log(user.password);
     if(!user || !await comparePassword(password, user.password)) {
-        throw 'Invalid username or password!'
+        throw 'Invalid username or password!';
     };
     const payload = {username: user.username};
     const secret = 'Xen';
