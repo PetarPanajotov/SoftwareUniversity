@@ -1,12 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const jwtCallback = require('jsonwebtoken');
-const util = require('util');
-
-const jwt = {
-    sign: util.promisify(jwtCallback.sign),
-    verify: util.promisify(jwtCallback.verify)
-} 
+const jwt = require('../utils/jwtUtils');
     
 exports.checkExistingUsername = (username) => User.findOne({username});
 

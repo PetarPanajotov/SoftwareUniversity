@@ -24,7 +24,7 @@ exports.postLogin = async (req, res) =>{
     res.cookie('auth', token, {httpOnly: true});
     res.redirect('/')
     } catch(err) {
-        console.log(err);
+        console.log(err.message);
         res.render('404');
     }
 }
