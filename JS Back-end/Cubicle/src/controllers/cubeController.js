@@ -12,3 +12,9 @@ exports.postCreateCube = async (req, res) => {
 
     res.redirect('/');
 }
+exports.getEdit = (req, res) => {
+    res.render('edit');
+}
+exports.getDelete = (req, res) => {
+    res.render('delete');
+}
