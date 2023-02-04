@@ -12,8 +12,13 @@ exports.postCreateCube = async (req, res) => {
 
     res.redirect('/');
 }
-exports.getEdit = (req, res) => {
-    res.render('edit');
+exports.getEdit = async (req, res) => {
+    const cubeId = req.params.id;
+    const cube = await Cube.findById(cubeId).lean();
+    res.render('edit', cube);
+
+
+
 }
 exports.getDelete = (req, res) => {
     res.render('delete');
