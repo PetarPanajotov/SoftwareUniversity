@@ -24,8 +24,11 @@ router.post('/attach/accessory/:id', accessoryController.postAttachAccessory);
 
 router.get('/login', authenticationController.getLogin);
 router.post('/login', authenticationController.postLogin);
+
 router.get('/register', authenticationController.getRegister);
 router.post('/register', authenticationController.postRegister);
+
+router.get('/logout', authenticationController.getLogout);
 
 
 module.exports = router;

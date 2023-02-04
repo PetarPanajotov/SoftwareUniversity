@@ -17,7 +17,7 @@ exports.postRegister = async (req, res) => {
     await register(username, password);
     res.redirect('/login');
 };
-exports.postLogin = async (req, res) =>{
+exports.postLogin = async (req, res) => {
     const {username, password} = req.body;
     try {
     const token = await login(username, password);
@@ -28,3 +28,7 @@ exports.postLogin = async (req, res) =>{
         res.render('404');
     }
 }
+exports.getLogout = (req, res) => {
+    res.clearCookie('auth');
+    res.redirect('/');
+};
