@@ -17,3 +17,10 @@ exports.authentication = async (req, res, next) => {
     };
     next();
 };
+
+exports.pagePermissions = (req,res,next) => {
+    if(!req.isAuthenticated) {
+        res.redirect('/login');
+    }
+    next();
+};
