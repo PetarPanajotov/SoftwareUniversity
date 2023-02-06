@@ -1,6 +1,5 @@
 const Accessory = require('../models/Accessory');
 const Cube = require('../models/Cube');
-const mongoose = require('mongoose');
 
 exports.getCreateAccessory = (req, res) => {
     res.render('createAccessory');
