@@ -1,5 +1,4 @@
 const Cube = require("../models/Cube");
-const mongoose = require('mongoose');
 const { generateDifficultyLevel } = require('../utils/difficultyLevelUtil')
 
 exports.getCreateCube = (req, res) => {
@@ -28,6 +27,10 @@ exports.postEdit = async (req, res) => {
     res.redirect(`/details/${cubeId}`)
 }
 
-exports.getDelete = (req, res) => {
-    res.render('delete');
+exports.getDelete = async(req, res) => {
+    const cubeId = req.params.id;
+    const cube = await Cube.findById(cubeId).lean();
+    const difficultyLevel = generateDifficultyLevel(cube.difficultyLevel);
+
+    res.render('delete', { cube, difficultyLevel });
 }
