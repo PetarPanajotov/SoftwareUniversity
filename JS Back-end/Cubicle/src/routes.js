@@ -18,6 +18,7 @@ router.post('/create', pagePermissions, cubeController.postCreateCube);
 router.get('/details/:id', homeController.getDetails);
 router.get('/delete/:id', cubeController.getDelete);
 router.get('/edit/:id', cubeController.getEdit);
+router.post('/edit/:id', cubeController.postEdit);
 
 router.get('/create/accessory', pagePermissions, accessoryController.getCreateAccessory);
 router.post('/create/accessory', pagePermissions, accessoryController.postCreateAcessory);
