@@ -19,6 +19,9 @@ const schema = new mongoose.Schema({
         required: true,
 
     },
+    _ownerId: {
+        type: String
+    },
     accessories: [{
         type: mongoose.Types.ObjectId,
         ref: 'Accessory'
