@@ -34,3 +34,10 @@ exports.getDelete = async(req, res) => {
 
     res.render('delete', { cube, difficultyLevel });
 }
+
+exports.postDelete = async (req, res) => {
+    const cubeId = req.params.id;
+
+    await Cube.findOneAndRemove({_id: cubeId});
+    res.redirect(`/`)
+}
