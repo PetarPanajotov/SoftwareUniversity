@@ -15,15 +15,22 @@ exports.authentication = async (req, res, next) => {
         } catch (err) {
             console.log(err.message);
             res.clearCookie('auth');
-            // res.redirect('/404') will add 404 page.
+            res.render('404') //will add 404 page.
         };
     };
     next();
 };
 
-exports.pagePermissions = (req,res,next) => {
+exports.isNotLogged = (req, res, next) => {
     if(!req.isAuthenticated) {
-        res.redirect('/login');
-    }
+       return res.redirect('/login');
+    };
     next();
-};  
+};
+
+exports.isAlreadyLogged = (req, res, next) => {
+    if(req.isAuthenticated) {
+        return res.redirect('/');
+    };
+    next();
+};
