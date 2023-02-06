@@ -17,12 +17,13 @@ exports.getHomePage = async (req,res) => {
 exports.getAboutPage = (req,res) => {
     res.render('about');
 }
-exports.getDetails = async (req,res) => {
+exports.getDetails = async (req, res) => {
     const cubeId = req.params.id;
     let cube = await Cube.findById(cubeId).populate('accessories').lean();
+    const isOwner = cube._ownerId === req.user._id? true: false;
     if (!cube) {
         res.render('404');
         return;
     }
-    res.render('details', cube);
+    res.render('details', {cube, isOwner});
 }
