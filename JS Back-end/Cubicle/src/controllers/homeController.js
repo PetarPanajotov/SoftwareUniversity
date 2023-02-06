@@ -20,7 +20,12 @@ exports.getAboutPage = (req,res) => {
 exports.getDetails = async (req, res) => {
     const cubeId = req.params.id;
     let cube = await Cube.findById(cubeId).populate('accessories').lean();
-    const isOwner = cube._ownerId === req.user._id? true: false;
+    let isOwner = false;
+    if(req.user) {
+        if(req.user._id === cube._ownerId) {
+        isOwner = true;
+        };
+    };
     if (!cube) {
         res.render('404');
         return;
