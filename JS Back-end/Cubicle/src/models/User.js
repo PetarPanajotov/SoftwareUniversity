@@ -4,13 +4,15 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        minLength: 6,
-        maxLength: 18
+        match: /^[a-zA-Z0-9]+/gm,
+        minLength: 5,
+        unique: true
     },
     password: {
         type: String,
         required: true,
-        minLength: [6, 'Password have to be at least 6 characters!'],
+        match: /^[a-zA-Z0-9]+/gm,
+        minLength: [8, 'Password must to be at least 6 characters!'],
     }
 });
 const User = mongoose.model('User', userSchema);
