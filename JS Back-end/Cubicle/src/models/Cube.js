@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        match: /^[a-zA-Z0-9\s]+/gm
     },
     description: {
         type: String,
