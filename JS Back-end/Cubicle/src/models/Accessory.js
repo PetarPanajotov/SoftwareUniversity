@@ -4,17 +4,19 @@ const mongoose = require('mongoose');
 const accessorySchema = {
     name: {
         type: String,
-        required: true
+        required: true,
+        match: /^[a-zA-Z0-9]+/gm
+    },
+    description: {
+        type: String,
+        required: true,
+        match: /^[a-zA-Z0-9]+/gm,
+        minLength: 20
     },
     imageUrl: {
         type: String,
         required: true,
         match: /^https?:\/\//gm
-    },
-    description: {
-        type: String,
-        required: true,
-        maxLength: 50
     }
 };
 
