@@ -12,7 +12,7 @@ exports.register = async (username, password) => {
 exports.login = async (username, password) => {
     const user = await this.checkExistingUsername(username).exec();
     if(!user || !await comparePassword(password, user.password)) {
-        throw 'Invalid username or password!';
+        throw new Error ('Invalid username or password!');
     };
     const payload = {username: user.username, _id: user._id};
     const secret = 'Xen';
