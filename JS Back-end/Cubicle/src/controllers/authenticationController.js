@@ -1,4 +1,4 @@
-const { checkExistingUsername, register, login } = require('../services/authService');
+const { register, login } = require('../services/authService');
 
 exports.getLogin = (req, res) => {
     res.render('login');
@@ -8,20 +8,21 @@ exports.getRegister = (req, res) => {
 };
 exports.postRegister = async (req, res) => {
     const { username, password, repeatPassword } = req.body;
-    if (password !== repeatPassword) {
-        return res.render('404');
+    try {
+        await register(username, password, repeatPassword);
+    } catch (err) {
+        // console.log(err);
+        // const message = Object.keys(err).map(key => err[key].message)
+        // console.log(message)
+        return res.render('register', { err: err.message });
     }
-    if (await checkExistingUsername(username)) {
-        throw 'User already exist';
-    }
-    await register(username, password);
     res.redirect('/login');
 };
 exports.postLogin = async (req, res) => {
     const { username, password } = req.body;
     try {
         const token = await login(username, password);
-        res.cookie('auth', token, { httpOnly: true });  
+        res.cookie('auth', token, { httpOnly: true });
     } catch (err) {
         console.log(err.message);
         return res.render('login', { err: err.message });
