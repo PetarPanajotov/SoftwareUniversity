@@ -14,10 +14,13 @@ exports.postCreateCube = async (req, res) => {
     res.redirect('/');
 };
 
-exports.getEdit = async (req, res) => {
+exports.getEdit = async (req, res, next) => {
     const cubeId = req.params.id;
     const cube = await Cube.findById(cubeId).lean();
     const difficultyLevel = generateDifficultyLevel(cube.difficultyLevel);
+    if (req.user._id !== cube._ownerId) {
+        return next(new Error('You are not an owner!'));
+    }
 
     res.render('edit', { cube, difficultyLevel });
 };
