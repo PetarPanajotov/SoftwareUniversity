@@ -26,3 +26,7 @@ exports.postLogin = async (req, res) => {
     }
     res.redirect('/')
 }
+exports.getlogout = async(req, res) => {
+    res.clearCookie('auth');
+    res.redirect('/');
+};
