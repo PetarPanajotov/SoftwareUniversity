@@ -1,4 +1,4 @@
-const { register } = require("../services/authService");
+const { register, login } = require("../services/authService");
 
 exports.getRegisterPage = (req, res) => {
     res.render('register');
@@ -15,3 +15,14 @@ exports.postRegister = async (req, res) => {
     }
     res.redirect('/');
 };
+
+exports.postLogin = async (req, res) => {
+    const {email, password} = req.body;
+    try {
+        const token = await login(email, password);
+        res.cookie('auth', token, {httpOnly: true});
+    } catch(err) {
+        console.log(err.message)
+    }
+    res.redirect('/')
+}

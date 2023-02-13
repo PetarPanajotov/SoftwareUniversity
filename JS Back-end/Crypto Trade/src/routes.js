@@ -1,5 +1,5 @@
 const express = require('express');
-const { postRegister, getRegisterPage, getLoginPage } = require('./controllers/authController');
+const { postRegister, getRegisterPage, getLoginPage, postLogin } = require('./controllers/authController');
 const { getCatalogPage, getCreatePage, postCrypto, getDetails } = require('./controllers/cryptoController');
 const { getHomePage, getSearchPage } = require('./controllers/homeController');
 const router = express.Router();
@@ -14,5 +14,6 @@ router.get('/details/:id', getDetails);
 
 router.post('/register', postRegister);
 router.post('/create', postCrypto);
+router.post('/login', postLogin);
 
 module.exports = router;
