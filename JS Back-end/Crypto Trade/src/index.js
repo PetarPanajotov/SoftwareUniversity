@@ -1,5 +1,6 @@
 const { urlencoded } = require('express');
 const handlebarsConfig = require('./configs/viewEngine');
+const databaseInit = require('./configs/databaseSetup');
 const express = require('express');
 const router = require('./routes');
 const app = express();
@@ -10,7 +11,6 @@ app.use(express.static('./src/public'));
 handlebarsConfig(app);
 app.use(router);
 
-
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}...`)
-})
+databaseInit()
+    .then(() => app.listen(port, console.log(`Server listening on port ${port}...`)))
+    .catch((err) => console.error(err.message));
