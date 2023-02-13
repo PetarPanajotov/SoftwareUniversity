@@ -5,7 +5,7 @@ const cryptoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
+    imageUrl: {
         type: String,
         required: true
     },
@@ -17,7 +17,7 @@ const cryptoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    paymentMethod: {
+    payment: {
         type: String,
         required: true
     },
