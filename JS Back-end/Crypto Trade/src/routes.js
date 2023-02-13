@@ -1,6 +1,6 @@
 const express = require('express');
 const { postRegister, getRegisterPage, getLoginPage, postLogin, getlogout } = require('./controllers/authController');
-const { getCatalogPage, getCreatePage, postCrypto, getDetails } = require('./controllers/cryptoController');
+const { getCatalogPage, getCreatePage, postCrypto, getDetails, getBuy } = require('./controllers/cryptoController');
 const { getHomePage, getSearchPage } = require('./controllers/homeController');
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.get('/catalog', getCatalogPage);
 router.get('/create', getCreatePage);
 router.get('/details/:id', getDetails);
 router.get('/logout', getlogout);
+router.get('/details/buy/:id', getBuy);
 
 router.post('/register', postRegister);
 router.post('/create', postCrypto);
