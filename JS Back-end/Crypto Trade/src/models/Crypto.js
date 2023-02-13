@@ -21,10 +21,11 @@ const cryptoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    buy: {
+    buy:
+    [{
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    },
+    }],
     _ownerId: {
        type: mongoose.Types.ObjectId,
        ref: 'User' 
