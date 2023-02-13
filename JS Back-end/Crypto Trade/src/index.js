@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 app.use(urlencoded({extended: false}));
-app.use(express.static('./src/public'));
+app.use(express.static('src/public'));
 handlebarsConfig(app);
 app.use(router);
 
