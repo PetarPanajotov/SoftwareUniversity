@@ -20,3 +20,16 @@ exports.authentication = async (req, res, next) => {
     };
     next();
 };
+exports.isNotLogged = (req, res, next) => {
+    if(!req.isAuthenticated) {
+       return res.redirect('/404');
+    };
+    next();
+};
+
+exports.isAlreadyLogged = (req, res, next) => {
+    if(req.isAuthenticated) {
+        return res.redirect('/404');
+    };
+    next();
+};

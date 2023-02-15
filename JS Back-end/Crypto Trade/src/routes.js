@@ -1,20 +1,21 @@
 const express = require('express');
 const { postRegister, getRegisterPage, getLoginPage, postLogin, getlogout } = require('./controllers/authController');
 const { getCatalogPage, getCreatePage, postCrypto, getDetails, getBuy, getDelete, getEdit, postEdit } = require('./controllers/cryptoController');
-const { getHomePage, getSearchPage } = require('./controllers/homeController');
+const { getHomePage, getSearchPage, getErrorPage } = require('./controllers/homeController');
+const { isNotLogged, isAlreadyLogged } = require('./middlewares/authMiddleware');
 const router = express.Router();
-
 router.get('/', getHomePage);
-router.get('/register', getRegisterPage);
-router.get('/login', getLoginPage);
-router.get('/search', getSearchPage);
-router.get('/catalog', getCatalogPage);
-router.get('/create', getCreatePage);
+router.get('/register', isAlreadyLogged, getRegisterPage);
+router.get('/login', isAlreadyLogged, getLoginPage);
+router.get('/search', isNotLogged, getSearchPage);
+router.get('/catalog',  getCatalogPage);
+router.get('/create', isNotLogged, getCreatePage);
 router.get('/details/:id', getDetails);
-router.get('/logout', getlogout);
-router.get('/details/buy/:id', getBuy);
-router.get('/details/delete/:id', getDelete);
-router.get('/details/edit/:id', getEdit);
+router.get('/logout', isNotLogged, getlogout);
+router.get('/details/buy/:id',isNotLogged, getBuy);
+router.get('/details/delete/:id', isNotLogged, getDelete);
+router.get('/details/edit/:id', isNotLogged, getEdit);
+router.get('/404', getErrorPage);
 
 router.post('/register', postRegister);
 router.post('/create', postCrypto);
