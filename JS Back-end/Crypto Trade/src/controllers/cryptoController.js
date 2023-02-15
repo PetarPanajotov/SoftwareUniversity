@@ -1,3 +1,4 @@
+const { deleteCrypto, editCrypto, editCryptoData } = require('../services/cryptoService');
 const Crypto = require('../models/Crypto');
 
 exports.getCatalogPage = async (req, res) => {
@@ -22,16 +23,26 @@ exports.getDetails = async (req, res) => {
     let isOwner = false;
     let alreadyBought = false;
     for (let index of crypto.buy) {
-        if (index._id.valueOf() === req.user._id) {
+        if (index._id.valueOf() === req.user?._id) {
             alreadyBought = true;
         }
     }
-    if (crypto._ownerId._id.valueOf() === req.user._id) {
+    if (crypto._ownerId._id.valueOf() === req.user?._id) {
         isOwner = true;
     };
     res.render('details', { crypto, isOwner, alreadyBought });
 }
 
+exports.getDelete = async (req, res) => {
+    const cryptoId = req.params.id;
+    await deleteCrypto(cryptoId);
+    res.redirect('/catalog');
+}
+exports.getEdit = async (req, res) => {
+    const cryptoId = req.params.id;
+    const {crypto, generatePayment} = await editCrypto(cryptoId);
+    res.render('edit', { crypto, generatePayment});
+}
 exports.postCrypto = async (req, res) => {
     const { name, imageUrl, price, description, payment } = req.body;
     const ownerId = req.user._id;
@@ -39,3 +50,9 @@ exports.postCrypto = async (req, res) => {
     await crypto.save();
     res.redirect('/catalog');
 };
+exports.postEdit = async(req, res) => {
+    const { name, imageUrl, price, description, payment } = req.body;
+    const cryptoId = req.params.id;
+    await editCryptoData({name, imageUrl, price, description, payment}, cryptoId);
+    res.redirect(`/details/${cryptoId}`);
+}
