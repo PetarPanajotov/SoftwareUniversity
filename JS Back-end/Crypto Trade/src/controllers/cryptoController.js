@@ -1,5 +1,6 @@
 const { deleteCrypto, editCrypto, editCryptoData } = require('../services/cryptoService');
 const Crypto = require('../models/Crypto');
+const { getErrorMessage } = require('../utils/errorHandlerUtils');
 
 exports.getCatalogPage = async (req, res) => {
     const cryptos = await Crypto.find().lean();
@@ -40,19 +41,23 @@ exports.getDelete = async (req, res) => {
 }
 exports.getEdit = async (req, res) => {
     const cryptoId = req.params.id;
-    const {crypto, generatePayment} = await editCrypto(cryptoId);
-    res.render('edit', { crypto, generatePayment});
+    const { crypto, generatePayment } = await editCrypto(cryptoId);
+    res.render('edit', { crypto, generatePayment });
 }
 exports.postCrypto = async (req, res) => {
     const { name, imageUrl, price, description, payment } = req.body;
     const ownerId = req.user._id;
-    const crypto = new Crypto({ name, imageUrl, price, description, payment, _ownerId: ownerId });
-    await crypto.save();
-    res.redirect('/catalog');
+    try {
+        const crypto = new Crypto({ name, imageUrl, price, description, payment, _ownerId: ownerId });
+        await crypto.save();
+        res.redirect('/catalog');
+    } catch (err) {
+        return res.render('create', { error: getErrorMessage(err) });
+    }
 };
-exports.postEdit = async(req, res) => {
+exports.postEdit = async (req, res) => {
     const { name, imageUrl, price, description, payment } = req.body;
     const cryptoId = req.params.id;
-    await editCryptoData({name, imageUrl, price, description, payment}, cryptoId);
+    await editCryptoData({ name, imageUrl, price, description, payment }, cryptoId);
     res.redirect(`/details/${cryptoId}`);
 }

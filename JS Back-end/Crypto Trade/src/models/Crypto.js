@@ -3,23 +3,27 @@ const mongoose = require('mongoose');
 const cryptoSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: [true, "Name is required!"],
+        minLength: [2, "Name should be at least 2 character long!"]
     },
     imageUrl: {
         type: String,
-        required: true
+        required: [true, 'URL address is required!'],
+        match: [/^https?:\/\//gm, "Invalid URL address!"]
     },
     price: {
         type: Number,
-        required: true
+        required: [true, "Price is required!"],
+        minimum: [0, "Price should be positive number!"]
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Description is required!"],
+        minLength: [10, "Description should be at least 10 character long!"]
     },
     payment: {
         type: String,
-        required: true,
+        required: [true, "Payment is required!"],
         enum: ["crypto-wallet", "credit-card", "debit-card", "paypal"]
     },
     buy:
