@@ -1,4 +1,5 @@
 const { register, login } = require("../services/authService");
+const { getErrorMessage } = require("../utils/errorHandlerUtils");
 
 exports.getRegisterPage = (req, res) => {
     res.render('register');
@@ -10,10 +11,11 @@ exports.postRegister = async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
     try {
         await register(username, email, password, confirmPassword);
+        res.redirect('/');
     } catch (err) {
         console.log(err.message);
-    }
-    res.redirect('/');
+        return res.render('register', {error: getErrorMessage(err)});
+    };
 };
 
 exports.postLogin = async (req, res) => {
@@ -21,10 +23,11 @@ exports.postLogin = async (req, res) => {
     try {
         const token = await login(email, password);
         res.cookie('auth', token, {httpOnly: true});
+        res.redirect('/')
     } catch(err) {
         console.log(err.message)
+        return res.render('login', {error: err.message})
     }
-    res.redirect('/')
 }
 exports.getlogout = async(req, res) => {
     res.clearCookie('auth');
