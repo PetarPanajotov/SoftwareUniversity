@@ -15,7 +15,7 @@ router.get('/logout', isNotLogged, getlogout);
 router.get('/details/buy/:id',isNotLogged, getBuy);
 router.get('/details/delete/:id', isNotLogged, getDelete);
 router.get('/details/edit/:id', isNotLogged, getEdit);
-router.get('/404', getErrorPage);
+router.get('*', getErrorPage);
 
 router.post('/register', postRegister);
 router.post('/create', postCrypto);
