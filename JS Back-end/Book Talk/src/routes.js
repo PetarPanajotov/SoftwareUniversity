@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { getRegisterPage, postRegister, getLoginPage, postLogin, getLogout } = require('./controllers/authController');
-const { getCreatePage, postCreate, getCatalog, getDetailsPage, getWish, getEditPage, postEdit } = require('./controllers/bookController');
+const { getCreatePage, postCreate, getCatalog, getDetailsPage, getWish, getEditPage, postEdit, getDelete } = require('./controllers/bookController');
 const { getHomePage } = require('./controllers/homeController');
 
 const router = Router();
@@ -18,5 +18,6 @@ router.get('/catalog/details/:id', getDetailsPage);
 router.get('/catalog/details/:id/wish', getWish);
 router.get('/catalog/details/:id/edit', getEditPage);
 router.post('/catalog/details/:id/edit', postEdit);
+router.get('/catalog/details/:id/delete', getDelete);
 
 module.exports = router;

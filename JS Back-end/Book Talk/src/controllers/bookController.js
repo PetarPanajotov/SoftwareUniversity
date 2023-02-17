@@ -1,4 +1,4 @@
-const { createBook, getAllBooks, getOneBook, getOneAndUpdate, edit } = require("../services/bookService");
+const { createBook, getAllBooks, getOneBook, getOneAndUpdate, edit, deleteBook } = require("../services/bookService");
 
 exports.getCreatePage = (req, res) => {
     res.render('create');
@@ -31,6 +31,11 @@ exports.postEdit = async(req, res) => {
     const {title, author, imageUrl, review, genre, stars} = req.body;
     await edit(bookId, {title, author, imageUrl, review, genre, stars});;
     res.redirect(`/catalog/details/${bookId}`);
+};
+exports.getDelete = async(req, res) => {
+    const bookId = req.params.id;
+    await deleteBook(bookId);
+    res.redirect('/catalog');
 }
 
 exports.postCreate = async(req, res) => {
