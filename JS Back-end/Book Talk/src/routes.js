@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { getRegisterPage, postRegister, getLoginPage, postLogin, getLogout } = require('./controllers/authController');
-const { getCreatePage, postCreate } = require('./controllers/bookController');
+const { getCreatePage, postCreate, getCatalog } = require('./controllers/bookController');
 const { getHomePage } = require('./controllers/homeController');
 
 const router = Router();
@@ -13,5 +13,6 @@ router.post('/login', postLogin);
 router.get('/logout', getLogout);
 router.get('/create', getCreatePage);
 router.post('/create', postCreate);
+router.get('/catalog', getCatalog);
 
 module.exports = router;
