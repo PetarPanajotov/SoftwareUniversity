@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 viewEngineSetup(app);
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(urlencoded({ extended: false }));
 app.use(express.static('src/public'));
 app.use(authentication);

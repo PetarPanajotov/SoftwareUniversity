@@ -1,4 +1,4 @@
-const { createBook, getAllBooks, getOneBook, getOneAndUpdate } = require("../services/bookService");
+const { createBook, getAllBooks, getOneBook, getOneAndUpdate, edit } = require("../services/bookService");
 
 exports.getCreatePage = (req, res) => {
     res.render('create');
@@ -14,12 +14,23 @@ exports.getDetailsPage = async(req, res) => {
     const isOwner = book._ownerId.valueOf() === req.user?._id;
     const isAlreadyWished = book.wishList.some(id => id == req.user?._id);
     res.render('details', {book, isOwner, isAlreadyWished: !isAlreadyWished});
-}
+};
 exports.getWish = async(req, res) => {
     const bookId = req.params.id;
     const userId = req.user?._id;
     await getOneAndUpdate(bookId, userId);
-    res.redirect(`/catalog/details/${bookId}`)
+    res.redirect(`/catalog/details/${bookId}`);
+};
+exports.getEditPage = async(req, res) => {
+    const bookId = req.params.id;
+    const book = await getOneBook(bookId);
+    res.render('edit', {book});
+};
+exports.postEdit = async(req, res) => {
+    const bookId = req.params.id;
+    const {title, author, imageUrl, review, genre, stars} = req.body;
+    await edit(bookId, {title, author, imageUrl, review, genre, stars});;
+    res.redirect(`/catalog/details/${bookId}`);
 }
 
 exports.postCreate = async(req, res) => {
