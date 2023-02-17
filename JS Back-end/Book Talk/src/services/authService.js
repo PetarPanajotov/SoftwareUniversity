@@ -11,9 +11,11 @@ exports.register = async (username, email, password, confirmPassword) => {
     if (password < 4) {
         throw new Error('Password should be at least 4 character long!');
     };
-    password = await bcrypt.hash(password, 10);
-    const user = new User({username, email, password});
+    const hashPassword = await bcrypt.hash(password, 10);
+    const user = new User({username, email, password: hashPassword});
     await user.save();
+    const token = await this.login(email, password);
+    return token;
 };
 
 exports.login = async (email, password) => {
