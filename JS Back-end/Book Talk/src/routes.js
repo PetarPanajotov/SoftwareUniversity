@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { getRegisterPage, postRegister, getLoginPage, postLogin, getLogout } = require('./controllers/authController');
 const { getCreatePage, postCreate, getCatalog, getDetailsPage, getWish, getEditPage, postEdit, getDelete } = require('./controllers/bookController');
-const { getHomePage, getErrorPage } = require('./controllers/homeController');
+const { getHomePage, getErrorPage, getProfilePage } = require('./controllers/homeController');
 const { isAlreadyLogged, isNotLogged, isNotOwner } = require('./middlewares/authMiddlewares');
 
 const router = Router();
@@ -26,6 +26,8 @@ router.get('/catalog/details/:id/wish', isNotLogged, getWish);
 router.get('/catalog/details/:id/edit', isNotLogged, isNotOwner, getEditPage);
 router.post('/catalog/details/:id/edit', isNotLogged, isNotOwner, postEdit);
 router.get('/catalog/details/:id/delete', isNotLogged, isNotOwner, getDelete);
+
+router.get('/profile', isNotLogged, getProfilePage);
 
 router.get('*', getErrorPage);
 

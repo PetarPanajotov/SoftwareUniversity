@@ -9,3 +9,4 @@ exports.createBook = async ({ title, author, imageUrl, review, genre, stars }, o
     const book = new Book({ title, author, imageUrl, review, genre, stars, _ownerId: ownerId});
     await book.save();
 };
+exports.getUserWished = (userId) => Book.find({wishList: userId}).lean();
