@@ -8,7 +8,7 @@ exports.register = async (email, password, confirmPassword, description) => {
     if (password !== confirmPassword) {
         throw new Error('Password missmatch. Please try again!');
     };
-    if (password < 4) {
+    if (password < 5) {
         throw new Error('Password should be at least 4 character long!');
     };
     const hashedpassword = await bcrypt.hash(password, 10);

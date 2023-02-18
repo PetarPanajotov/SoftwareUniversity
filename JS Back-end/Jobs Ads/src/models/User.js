@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Email is required!"],
-        minLength: [10, "Email should be at least 10 character long!"]
+        match: [/^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/, "Invalid email. Please try again!"]
     },
     password: {
         type: String,
@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        maxLength: [40, 'Description of skills should be a maximum of 40 characters long!']
     },
     myAds: [{
         type: mongoose.Types.ObjectId,
