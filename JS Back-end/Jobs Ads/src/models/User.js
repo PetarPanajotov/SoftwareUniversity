@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: [true, "Username is required!"],
-        minLength: [5, "Username should be at least 5 character long!"]
-    },
     email: {
         type: String,
         required: [true, "Email is required!"],
@@ -14,7 +9,15 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    myAds: [{
+        type: mongoose.Types.ObjectId,
+        href: 'Ad'
+    }]
 });
 
 const User = mongoose.model('User', userSchema);
