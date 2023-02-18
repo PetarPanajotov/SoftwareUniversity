@@ -43,3 +43,11 @@ exports.isNotOwner = async(req, res, next) => {
     };
     next();
 };
+exports.isOwner = async(req, res, next) => {
+    const book = await Book.findById(req.params.id)
+    const isOwner = book._ownerId.valueOf() === req.user?._id;
+    if(isOwner) {
+        return res.redirect('/404');
+    };
+    next();
+};
