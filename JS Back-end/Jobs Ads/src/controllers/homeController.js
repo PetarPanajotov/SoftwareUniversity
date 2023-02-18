@@ -7,4 +7,15 @@ exports.getHomePage = async(req,res) => {
 };
 exports.get404Page = (req, res) => {
     res.render('404');
+};
+exports.getSearchPage = (req, res) => {
+    res.render('search');
+};
+exports.postSearch = async(req, res) => {
+    const { query } = req.body;
+    let ads = await findAllAds();
+    if(query) {
+        ads = ads.filter(ad => ad.author.email.toLowerCase().includes(query.toLowerCase()));
+    }
+    res.render('search', {ads})
 }

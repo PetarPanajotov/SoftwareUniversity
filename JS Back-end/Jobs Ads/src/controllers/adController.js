@@ -34,7 +34,8 @@ exports.getApply = async (req, res) => {
 };
 exports.getDeleteAd = async (req, res) => {
     const adId = req.params.id;
-    await deleteAd(adId);
+    const authorId = req.user?._id;
+    await deleteAd(adId, authorId);
     res.redirect('/catalog');
 };
 exports.getEditAd = async (req, res) => {
