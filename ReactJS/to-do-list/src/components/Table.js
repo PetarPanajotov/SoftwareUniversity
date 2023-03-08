@@ -12,6 +12,17 @@ export function Table() {
             })
     }, [])
     console.log(task)
+    function changeStatus(e) {
+        debugger;
+        const updateTask = task.map(item => {
+            debugger;
+            if (item._id === e.target.id) {
+                item.isCompleted = !item.isCompleted
+            }
+            return item;
+        })
+        setTask(updateTask);
+    }
     return (
         <table className="table">
             <thead>
@@ -21,16 +32,16 @@ export function Table() {
                     <th className="table-header-action">Action</th>
                 </tr>
             </thead>
-            
+
             <tbody>
-                {task.map(movie =>
-                <tr className= {movie.isCompleted? "todo is-completed": "todo"}>
-                    <td>{movie.text}</td>
-                    <td>{movie.isCompleted? 'Completed': 'Incomplete'}</td>
-                    <td className="todo-action">
-                        <button className="btn todo-btn">Change status</button>
-                    </td>
-                </tr>
+                {task.map(task =>
+                    <tr className={task.isCompleted ? "todo is-completed" : "todo"} key={task._id}>
+                        <td>{task.text}</td>
+                        <td>{task.isCompleted ? 'Completed' : 'Incomplete'}</td>
+                        <td className="todo-action">
+                            <button className="btn todo-btn" onClick={changeStatus} id={task._id}>Change status</button>
+                        </td>
+                    </tr>
                 )}
             </tbody>
         </table>
