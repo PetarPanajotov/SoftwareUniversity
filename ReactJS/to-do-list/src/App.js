@@ -1,4 +1,5 @@
 import { AddNewTodo } from './components/AddNewTodo';
+import { Footer } from './components/Footer';
 import { LoadSpinner } from './components/LoadSpinner';
 import { Navigation } from './components/Navigation';
 import { Table } from './components/Table';
@@ -17,8 +18,9 @@ function App() {
                     </div>
                 </section>
             </main>
+            <Footer/>
         </>
-    )
-}
+    );
+};
 
 export default App;
