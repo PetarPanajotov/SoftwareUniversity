@@ -13,7 +13,7 @@ function App() {
                     <h1>Todo List</h1>
                     <AddNewTodo />
                     <div className="table-wrapper">
-                        <LoadSpinner />
+                        {/* <LoadSpinner /> */}
                         <Table />
                     </div>
                 </section>
