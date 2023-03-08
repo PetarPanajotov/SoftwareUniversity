@@ -1,6 +1,7 @@
 import { AddNewTodo } from './components/AddNewTodo';
 import { LoadSpinner } from './components/LoadSpinner';
 import { Navigation } from './components/Navigation';
+import { Table } from './components/Table';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                     <AddNewTodo />
                     <div className="table-wrapper">
                         <LoadSpinner />
+                        <Table />
                     </div>
                 </section>
             </main>
