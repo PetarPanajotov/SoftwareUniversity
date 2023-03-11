@@ -1,5 +1,4 @@
 export function User({createNewUser, editUser, user, onClose}) {
-    debugger;
     return (
         <div className="overlay">
             <div className="backdrop"></div>

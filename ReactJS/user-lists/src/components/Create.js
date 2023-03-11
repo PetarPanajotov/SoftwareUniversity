@@ -15,9 +15,7 @@ export function Create({url, onCloseCreate}) {
             body: JSON.stringify(data)
         }
         await fetch(url, header);
-        debugger;
         window.location.href = 'http://localhost:3000/';
     };
-    debugger;
     return (<User createNewUser = {createNewUser} onClose = {onCloseCreate}/>);
 }
