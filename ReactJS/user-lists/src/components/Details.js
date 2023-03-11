@@ -1,5 +1,3 @@
-
-
 export const Details = ({
     user,
     onCloseInfo,
