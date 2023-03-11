@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { CreateAndEdit } from "./CreateAndEdit";
+import { Create } from "./Create";
 import { Delete } from "./Delete";
 import { Details } from "./Details";
+import { Edit } from "./Edit";
 
 const url = 'http://localhost:3005/api/users'
 export function TableList() {
@@ -9,6 +10,7 @@ export function TableList() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [create, setCreate] = useState(false);
     const [del, setDel] = useState(null);
+    const [edit, setEdit] = useState(null);
 
     useEffect(() => {
         fetch(url)
@@ -16,7 +18,7 @@ export function TableList() {
             .then((data) => setPeople(data.users))
     }, []);
 
-
+    //details
     function onClickInfo(id) {
         fetch(`${url}/${id}`)
             .then((response) => response.json())
@@ -26,17 +28,29 @@ export function TableList() {
     function onCloseInfo() {
         return setSelectedUser(null);
     };
-
+    //create
     function onClickCreate() {
         return setCreate(true);
     };
-
+    function onCloseCreate() {
+        return setCreate(false);
+    };
+    //delete
     function onClickDelete(id) {
         return setDel(id);
     };
     function onCloseDelete() {
         return setDel(null);
-    }
+    };
+    //edit
+    function onClickEdit(id) {
+        fetch(`${url}/${id}`)
+            .then((response) => response.json())
+            .then((data) => setEdit(data.user))
+    };
+    function onCloseEdit() {
+        return setEdit(null);
+    };
 
     return (
         <>
@@ -110,7 +124,7 @@ export function TableList() {
                                 <td>{people.createdAt}</td>
 
                                 <td className="actions">
-                                    <button className="btn edit-btn" title="Edit">
+                                    <button className="btn edit-btn" title="Edit" onClick={() => onClickEdit(people._id)}>
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                                             className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 532 512">
@@ -119,7 +133,7 @@ export function TableList() {
                                             </path>
                                         </svg>
                                     </button>
-                                    <button className="btn delete-btn" title="Delete" onClick = {() => onClickDelete(people._id)}>
+                                    <button className="btn delete-btn" title="Delete" onClick={() => onClickDelete(people._id)}>
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                                             className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                                             <path fill="currentColor"
@@ -143,8 +157,9 @@ export function TableList() {
                 </table>
             </div>
             <button className="btn-add btn" onClick={() => onClickCreate()}>Add new user</button>
-            {create && <CreateAndEdit url = {url}/>}
-            {del && <Delete id = {del} url = {url} onCloseDelete = {onCloseDelete}/>}
+            {create && <Create url={url} onCloseCreate={onCloseCreate} />}
+            {edit && <Edit url = {url} user={edit} onCloseEdit={onCloseEdit} />}
+            {del && <Delete id={del} url={url} onCloseDelete={onCloseDelete} />}
             {selectedUser && <Details user={selectedUser} onCloseInfo={onCloseInfo} url={url} />}
         </>
     )
