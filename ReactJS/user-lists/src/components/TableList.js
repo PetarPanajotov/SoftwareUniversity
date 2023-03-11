@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { CreateAndEdit } from "./CreateAndEdit";
+import { Delete } from "./Delete";
 import { Details } from "./Details";
 
 const url = 'http://localhost:3005/api/users'
@@ -7,6 +8,7 @@ export function TableList() {
     const [peoples, setPeople] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [create, setCreate] = useState(false);
+    const [del, setDel] = useState(null);
 
     useEffect(() => {
         fetch(url)
@@ -28,6 +30,13 @@ export function TableList() {
     function onClickCreate() {
         return setCreate(true);
     };
+
+    function onClickDelete(id) {
+        return setDel(id);
+    };
+    function onCloseDelete() {
+        return setDel(null);
+    }
 
     return (
         <>
@@ -110,7 +119,7 @@ export function TableList() {
                                             </path>
                                         </svg>
                                     </button>
-                                    <button className="btn delete-btn" title="Delete">
+                                    <button className="btn delete-btn" title="Delete" onClick = {() => onClickDelete(people._id)}>
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                                             className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                                             <path fill="currentColor"
@@ -135,6 +144,7 @@ export function TableList() {
             </div>
             <button className="btn-add btn" onClick={() => onClickCreate()}>Add new user</button>
             {create && <CreateAndEdit url = {url}/>}
+            {del && <Delete id = {del} url = {url} onCloseDelete = {onCloseDelete}/>}
             {selectedUser && <Details user={selectedUser} onCloseInfo={onCloseInfo} url={url} />}
         </>
     )
