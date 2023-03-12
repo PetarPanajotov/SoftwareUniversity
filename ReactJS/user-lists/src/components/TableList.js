@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState } from "react";
 import { Create } from "./Create";
 import { Delete } from "./Delete";
 import { Details } from "./Details";
 import { Edit } from "./Edit";
 
-const url = 'http://localhost:3005/api/users'
-export function TableList() {
-    const [peoples, setPeople] = useState([]);
+export function TableList({peoples, url}) {
+    debugger;
     const [selectedUser, setSelectedUser] = useState(null);
     const [create, setCreate] = useState(false);
     const [del, setDel] = useState(null);
     const [edit, setEdit] = useState(null);
-
-    useEffect(() => {
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => setPeople(data.users))
-    }, []);
 
     //details
     function onClickInfo(id) {
@@ -51,7 +44,6 @@ export function TableList() {
     function onCloseEdit() {
         return setEdit(null);
     };
-
     return (
         <>
             <div className="table-wrapper">
@@ -162,5 +154,5 @@ export function TableList() {
             {del && <Delete id={del} url={url} onCloseDelete={onCloseDelete} />}
             {selectedUser && <Details user={selectedUser} onCloseInfo={onCloseInfo} url={url} />}
         </>
-    )
-}
+    );
+};
