@@ -9,20 +9,21 @@ const url = 'http://localhost:3005/api/users';
 
 function App() {
     const [peoples, setPeople] = useState([]);
-    debugger;
+    const [search, setSearch] = useState(null);
+    
     useEffect(() => {
         fetch(url)
             .then((response) => response.json())
             .then((data) => setPeople(data.users))
     }, []);
-    console.log(peoples);
+
     return (
         <>
             <Header />
             <main className="main">
                 <section className="card users-container">
-                    <Search />
-                    <TableList peoples = {peoples} url = {url} />
+                    <Search peoples = {peoples} setSearch = {setSearch}/>
+                    <TableList peoples = {peoples} url = {url} search = {search} />
                     <Pagination />
                 </section>
             </main>

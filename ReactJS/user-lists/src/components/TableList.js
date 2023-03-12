@@ -4,8 +4,7 @@ import { Delete } from "./Delete";
 import { Details } from "./Details";
 import { Edit } from "./Edit";
 
-export function TableList({peoples, url}) {
-    debugger;
+export function TableList({peoples, url, search}) {
     const [selectedUser, setSelectedUser] = useState(null);
     const [create, setCreate] = useState(false);
     const [del, setDel] = useState(null);
@@ -103,7 +102,7 @@ export function TableList({peoples, url}) {
                         </tr>
                     </thead>
                     <tbody>
-                        {peoples.map((people) =>
+                        {(search? search:peoples).map((people) =>
                             <tr key={people._id}>
                                 <td>
                                     <img src={people.imageUrl}
