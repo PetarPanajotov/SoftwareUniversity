@@ -1,0 +1,56 @@
+html, body {
+    margin: 0 auto;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+section, article {
+    margin: 0em 5em 0em 5em;
+}
+section {
+    border-bottom: 2px outset gray;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, serif;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.8em;
+}
+h3 {
+    font-size: 1.6em;
+}
+h4 {
+    font-size: 1.4em;
+}
+h5 {
+    font-size: 1.3em;
+}
+h6 {
+    font-size: 1.2em;
+}
+table {
+    width: 100%;
+    background-color: rgb(207, 204, 204);
+}
+th {
+    background-color: rgb(207, 204, 204);
+}
+tr:nth-child(odd) {
+    background-color: white;
+}
+tr:nth-child(even) {
+    background-color: #eae6e6;
+}
+blockquote {
+    font-style: italic;
+    border-left: 4px outset gray
+}
+blockquote p {
+    padding-left: 2em;
+}
+p.author {
+    text-align: right;
+}
