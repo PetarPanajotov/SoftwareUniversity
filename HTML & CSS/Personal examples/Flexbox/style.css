@@ -1,0 +1,43 @@
+* {
+    font: 16px/1.5 Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: rgb(68, 93, 239);
+    display: flex;
+    align-items: center;
+}
+nav h2 svg {
+    width: 100%;
+    height: auto;
+    max-height: 2em;
+    fill: #fff;
+    padding: 0em 1em;
+}
+h2 {
+    display: flex;
+    font-size: 2em;
+    color: #fff;
+    align-items: center;
+}
+nav ul {
+    display: flex;
+    gap: 1em;
+    padding: 0em 1em;
+    margin-left: auto;
+}
+nav ul li {
+    display: block;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 0.4em 0.8em;
+}
+nav ul li a:hover {
+    background-color: white;
+    color: rgb(68, 93, 239);
+}
