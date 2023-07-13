@@ -1,0 +1,26 @@
+div, section {
+    display: flex;
+    flex-wrap: wrap;
+}
+.container {
+    max-width: 65vw;
+}
+.notes {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}   
+.notes span {
+    border: 1px solid black;
+    flex: 0 1 100%;
+    padding: 0.5em 1em;
+}
+.week > span {
+    border: 1px black solid;
+    flex: 1 0 auto;
+    padding: 2em 1em;
+    text-align: center;
+}
+section :nth-child(1), section :nth-child(7) {
+    flex: 1 1 100%;
+    text-align: center;
+}

@@ -1,0 +1,18 @@
+ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 4em;
+}
+li {
+    border: 1em solid black;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1em;
+}
+img {
+    width: 100%;
+    height: auto;
+}
