@@ -1,0 +1,27 @@
+.header-wrapper {
+    background-color: #D01919;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1em 2em;
+    gap: 2em;
+}
+.header-wrapper svg {
+    fill: white;
+    height: 1.2em;
+    width: 1.2em;
+}
+.header-wrapper .number, .header-wrapper .location {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+.header-wrapper .social-media ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+}
+.header-wrapper .social-media ul > li {
+    display: block;
+}

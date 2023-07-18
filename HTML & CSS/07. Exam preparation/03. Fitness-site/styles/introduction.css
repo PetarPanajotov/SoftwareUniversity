@@ -1,0 +1,69 @@
+.introduction{
+    position: relative;
+}
+.introduction .image-wrapper {
+    display: block;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    height: 40em;
+}
+.introduction .image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40rem;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+.image-inner-text {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+.image-inner-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-inner-text h1 {
+    font-size: 3.7em;
+    padding-bottom: 1em;
+    letter-spacing: 0.2em;
+}
+.image-inner-text p {
+    display: block;
+    font-size: 1em;
+    width: 70%;
+}
+.image-inner-text a {
+    display: block;
+    border-radius: 6px;
+    background-color: #D01919;
+    padding: 0.3em 1.4em;
+    font-weight: 700;
+    font-size: 1.4em;
+    margin-top: 2em;
+}
+.navigation ul{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6em;
+}
+.navigation ul > li {
+    display: block;
+    font-size: 1.2em;
+}
+.navigation ul li > a {
+    text-decoration: none;
+    color: white;
+}

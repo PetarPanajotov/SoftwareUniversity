@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-self: stretch;
+    min-height: 100vh;
+    overflow: hidden;
+}
