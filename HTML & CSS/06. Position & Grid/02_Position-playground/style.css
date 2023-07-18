@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+}
+.blue {
+    background-color: lightblue;
+}
+.orange {
+    background-color: orange;
+}
+.viewport {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+}   
+.card {
+    display: block;
+    position: absolute;
+    width: 20%;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.card .icon {
+    position: absolute;
+    display: flex;
+    inset: 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 2em;
+}
+.card .icon svg {
+    fill: white;
+    width: 2em;
+    height: auto;
+
+}
+.card img {
+    display: block;
+    width: 100%;
+}
+
+

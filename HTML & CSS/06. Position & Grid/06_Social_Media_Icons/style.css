@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body ul li {
+    display: inline-block;
+}
+body ul li a {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    display: grid;
+    place-items: center;
+
+
+}
+svg {
+    display: block;
+}
+ul li:nth-child(1) a svg:hover {
+    fill: blue;
+}
+ul li:nth-child(2) a svg:hover {
+    fill: #1DA1F2;
+}
+ul li:nth-child(3) a svg:hover {
+    fill: #db4a39;
+}
+ul li:nth-child(4) a svg:hover {
+    fill: #0077B5;
+}
